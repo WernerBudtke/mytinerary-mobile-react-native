@@ -54,7 +54,7 @@ const Itineraries = (props) =>{
             :   <FlatList
                 data={itineraries}
                 keyExtractor={ item => item._id}
-                renderItem={ item => <Itinerary itinerary={item}/>}/>}
+                renderItem={ item => <Itinerary itinerary={item} myFunction={fetchAgain}/>}/>}
             {/* <Button title="BACK TO CITIES"/> */}
         </View>
     )
@@ -102,6 +102,6 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     image:{
-        height: 250,
+        height: 200,
     },
 })

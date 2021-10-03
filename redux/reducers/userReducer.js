@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage"
 const initState = {
     photoURL:"",
     token: "",
@@ -8,21 +9,24 @@ const initState = {
 const userReducer = (state = initState, action) =>{
     switch(action.type){
         case 'USER_LOGGED':
-            // console.log(action.payload)
-            // localStorage.setItem('token', action.payload.token)
-            // localStorage.setItem('firstName', action.payload.firstName)
-            // localStorage.setItem('photoURL', action.payload.photoURL)
-            // localStorage.setItem('likedItineraries', JSON.stringify(action.payload.likedItineraries))
-            // localStorage.setItem('_id', action.payload._id)
+            async function saveStuff(){
+                await AsyncStorage.setItem('token', action.payload.token)
+                await AsyncStorage.setItem('firstName', action.payload.firstName)
+                await AsyncStorage.setItem('photoURL', action.payload.photoURL)
+                await AsyncStorage.setItem('likedItineraries', JSON.stringify(action.payload.likedItineraries))
+            }
+            saveStuff()
             return{
                ...action.payload,
             }
         case 'LOGOUT':
-            localStorage.clear()
+            async function deleteStuff(){
+                await AsyncStorage.clear()
+            }
+            deleteStuff()
             return initState
         case 'LIKED_ITINERARY':
-            // console.log(action.payload)
-            // localStorage.setItem('likedItineraries', JSON.stringify(action.payload))
+            // await AsyncStorage.setItem('likedItineraries', JSON.stringify(action.payload))
             return{
                 ...state,
                 likedItineraries:action.payload
