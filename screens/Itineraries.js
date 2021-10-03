@@ -36,7 +36,7 @@ const Itineraries = (props) =>{
     if(fetchingItineraries && fetchingCity){
         return (
             <>  
-                <Text>Loading...</Text>
+                <View style={styles.containerLoad}><Text style={styles.textLoad}>Loading...</Text></View>
             </>
         )
     }
@@ -48,9 +48,8 @@ const Itineraries = (props) =>{
                     <Text style={styles.text}>Unfold the beauty of: {dataHandler("city")}</Text>
                 </ImageBackground>
             </View>
-            <Text></Text>
             {(itineraries && itineraries.length === 0) 
-            ?   <Text>OOPS, No itineraries yet</Text> 
+            ?   <Text style={styles.text}>OOPS, No itineraries yet</Text> 
             :   <FlatList
                 data={itineraries}
                 keyExtractor={ item => item._id}
@@ -84,6 +83,13 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between',
       backgroundColor: '#2a2351'
     },
+    containerLoad: {
+        flex:1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#2a2351'
+    },
     text:{
         textAlign: 'center',
         fontSize: 20,
@@ -94,6 +100,14 @@ const styles = StyleSheet.create({
         textShadowOffset: {width: -1, height: 1},
         textShadowRadius: 10,
         backgroundColor:'rgba(0, 0, 0, 0.75)'
+    },
+    textLoad:{
+        color: 'white',
+        fontSize: 20,
+        textAlign: 'center',
+        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 10
     },
     footer:{
         backgroundColor: 'black',

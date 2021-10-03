@@ -2,10 +2,12 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import Navigator from './navigation/MainNavDrawer'
 import {applyMiddleware, createStore} from 'redux'
-import {StatusBar} from 'react-native'
+import {LogBox, StatusBar} from 'react-native'
 import {Provider} from 'react-redux'
 import rootReducer from './redux/reducers/rootReducer.js';
 import thunk from 'redux-thunk'
+LogBox.ignoreAllLogs(true)
+
 
 const myStore = createStore(rootReducer, applyMiddleware(thunk))
 const App = () => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Text, FlatList, Button, TextInput } from 'react-native'
+import { View, StyleSheet, Text, FlatList, Button, TextInput, Pressable } from 'react-native'
 import { useState, useEffect } from "react"
 import { connect } from "react-redux"
 import userActions from "../redux/actions/userActions"
@@ -59,24 +59,26 @@ const Register = (props) => {
     const handleError = (string) =>{
         return renderError.error.includes(string) ? 'fieldError' : ''
     }
-    console.log(myErrorsKeys)
+    // console.log(myErrorsKeys)
     if(loading){
-        return <Text>Loading...</Text>
+        return <View style={styles.container}><Text style={styles.text}>Loading...</Text></View>
     }
     return (
         <View style={styles.container}>
-            <Text>First Name:</Text>
+            <Text style={styles.text}>First Name:</Text>
             <TextInput style={styles.input} value={newUser.firstName} onChangeText={e => inputHandler(e, 'firstName')}/>
-            <Text>Last Name:</Text>
+            <Text style={styles.text}>Last Name:</Text>
             <TextInput style={styles.input} value={newUser.lastName} onChangeText={e => inputHandler(e, 'lastName')}/>
-            <Text>Email:</Text>
+            <Text style={styles.text}>Email:</Text>
             <TextInput style={styles.input} value={newUser.eMail} onChangeText={e => inputHandler(e, 'eMail')}/>
-            <Text>Password:</Text>
+            <Text style={styles.text}>Password:</Text>
             <TextInput style={styles.input} secureTextEntry={true} value={newUser.password} onChangeText={e => inputHandler(e, 'password')}/>
-            <Text>Photo URL:</Text>
+            <Text style={styles.text}>Photo URL:</Text>
             <TextInput style={styles.input} value={newUser.photoURL} onChangeText={e => inputHandler(e, 'photoURL')}/>
-            <Text>Country:</Text>
+            <Text style={styles.text}>Country:</Text>
             <Picker
+                style={{ height: 50, width: 150, color: 'white'}}
+                dropdownIconColor={'white'}
                 selectedValue={newUser.country}
                 onValueChange={(itemValue, itemIndex) =>
                     inputHandler(itemValue, 'country')
@@ -91,13 +93,13 @@ const Register = (props) => {
                 <Picker.Item label="Rest of the World" value="Rest of the World" />
             </Picker>
             <Button title='SIGN UP' onPress={submitNewUser}/>
-            {renderError.error !== "" &&
+            {/* {renderError.error !== "" &&
                 <View>
                     <Text>ERRORS: Please read carefully!</Text>
                     {myErrorsKeys.map((key) => <Text key={`${key}D`}>{myErrors[key]}</Text>)}
                 </View>
-            }
-            <Text>Already registered? SIGN IN!</Text>
+            } */}
+            <Pressable onPress={() => {props.navigation.navigate("Sign In")}}><Text style={styles.textRegister}>Already registered? SIGN IN!</Text></Pressable>
         </View>
     )
 }
@@ -112,15 +114,23 @@ const styles = StyleSheet.create({
     container: {
       flex:1,
       flexDirection: 'column',
-      justifyContent: 'space-between',
-      backgroundColor: '#2a2351'
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#2a2351',
     },
     text:{
         textAlign: 'center',
         fontSize: 20,
-        paddingBottom: 5,
-        paddingTop: 5,
         color: 'white',
+        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 10
+    },
+    textRegister:{
+        textAlign: 'center',
+        fontSize: 20,
+        marginTop: 10,
+        color: 'goldenrod',
         textShadowColor: 'rgba(0, 0, 0, 0.75)',
         textShadowOffset: {width: -1, height: 1},
         textShadowRadius: 10
@@ -130,5 +140,13 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 20,
         textAlign: 'center'
-    }
+    },
+    input: {
+        height: 40,
+        width: 200,
+        backgroundColor: 'rgba(255, 255, 255, 0.75)',
+        margin: 12,
+        borderWidth: 1,
+        padding: 10,
+    },
 })

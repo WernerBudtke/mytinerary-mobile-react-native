@@ -1,17 +1,22 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import MainNavStack from './MainNavStack'
-import Cities from '../screens/Cities'
+import {
+   NavHome,
+   NavCities,
+   NavLogin,
+   NavRegister,
+   NavLogout,
+} from "./MainNavStack"
 import { connect } from "react-redux"
-import Login from '../screens/Login'
-import Register from '../screens/Register'
-import Logout from '../screens/Logout'
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import userActions from '../redux/actions/userActions';
 const Drawer = createDrawerNavigator()
 
 const Navigator = (props) => {
+   const handleDrawer = (props) =>{
+      props.navigation.toggleDrawer()
+   }
    const {token} = props
    useEffect(() =>{
       async function myFunction(){
@@ -23,8 +28,8 @@ const Navigator = (props) => {
                likedItineraries: JSON.parse(await AsyncStorage.getItem('likedItineraries'))
             }
             props.logLs(savedUser).then((res) => console.log(res))
-            console.log(savedUser)
-            console.log(token)
+            // console.log(savedUser)
+            // console.log(token)
          }
       }
       myFunction()
@@ -52,16 +57,16 @@ const Navigator = (props) => {
          },
       }}>
          <Drawer.Screen
-            name='Home'
-            component={MainNavStack}
+            name='Home '
+            component={NavHome}
             options={{
                headerShown: false,
             }}
+            handleDrawer={handleDrawer}
          />
-         <Drawer.Screen name='Cities' component={Cities} />
-         {!props.token ? <Drawer.Screen name='Login' component={Login} /> : <Drawer.Screen name='Logout' component={Logout} />}
-         {!props.token && <Drawer.Screen name='Register' component={Register} />}
-         {/* <Drawer.Screen name='Itineraries' component={Itineraries} /> */}
+         <Drawer.Screen name='Cities ' component={NavCities} options={{headerShown: false}}/>
+         {!props.token ? <Drawer.Screen name='Sign In' component={NavLogin} options={{headerShown: false}}/> : <Drawer.Screen name='Sign Out' component={NavLogout} options={{headerShown: false}}/>}
+         {!props.token && <Drawer.Screen name='Sign Up' component={NavRegister} options={{headerShown: false}}/>}
       </Drawer.Navigator>
    )
 }

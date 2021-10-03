@@ -45,18 +45,18 @@ const Login = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[renderError.error])
     if(loading){
-        return <Text>Loading...</Text>
+        return <View style={styles.container}><Text style={styles.text}>Loading...</Text></View>
     }
     return (
         <View style={styles.container}>
-            <Text>Email:</Text>
+            <Text style={styles.text}>Email:</Text>
             <TextInput style={styles.input} value={dataUser.eMail} onChangeText={e => inputHandler(e, 'eMail')}/>
-            <Text>Password:</Text>
+            <Text style={styles.text}>Password:</Text>
             <TextInput style={styles.input} secureTextEntry={true} value={dataUser.password} onChangeText={e => inputHandler(e, 'password')}/>
             <Button onPress={submitHandler} title="Sign In"/>
             <Pressable onPress={() => {
-                    props.navigation.navigate("Cities")
-                }}><Text>Don't have an acc yet? SIGN UP NOW</Text></Pressable>
+                    props.navigation.navigate("Sign Up")
+                }}><Text style={styles.textRegister}>Don't have an acc yet? SIGN UP NOW</Text></Pressable>
             {renderError.error !== "" && <Text>{renderError.error.includes('Google') ? renderError.error : 'Invalid email or password!'}</Text>}
         </View>
     )
@@ -75,7 +75,8 @@ const styles = StyleSheet.create({
     container: {
       flex:1,
       flexDirection: 'column',
-      justifyContent: 'space-between',
+      justifyContent: 'center',
+      alignItems: 'center',
       backgroundColor: '#2a2351'
     },
     text:{
@@ -84,6 +85,17 @@ const styles = StyleSheet.create({
         paddingBottom: 5,
         paddingTop: 5,
         color: 'white',
+        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 10
+    },
+    textRegister:{
+        textAlign: 'center',
+        fontSize: 20,
+        marginTop: 20,
+        paddingBottom: 5,
+        paddingTop: 5,
+        color: 'goldenrod',
         textShadowColor: 'rgba(0, 0, 0, 0.75)',
         textShadowOffset: {width: -1, height: 1},
         textShadowRadius: 10

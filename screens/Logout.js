@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react'
-import Hero from '../components/Hero'
 import { View, StyleSheet, Text } from 'react-native'
-import Carousel from '../components/MyCarousel'
 import { connect } from 'react-redux'
 import userActions from '../redux/actions/userActions'
 const Logout = (props) => {

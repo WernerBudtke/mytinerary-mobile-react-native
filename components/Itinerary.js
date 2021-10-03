@@ -70,7 +70,7 @@ const Itinerary = (props) => {
         })
     }
     // console.log(activities)
-    console.log(comments)
+    // console.log(comments)
     return (
         <View style={styles.container}> 
             <View style={styles.authorContainer}>
@@ -87,7 +87,7 @@ const Itinerary = (props) => {
                 <Pressable onPress={heartHandler}><Text style={styles.textInfo}>Likes: {props.itinerary.item.likes} {props.likedItineraries.find(element => element._id === _id) ? '❤️' : props.likedItineraries.indexOf(_id) !== -1 ? '❤️' : '🤍'}</Text></Pressable>
             </View>
             <View style={styles.moreinfo}>
-                {props.itinerary.item.hashtags.map((hashtag, index) => <Text key={index}>#{hashtag}</Text>)}
+                {props.itinerary.item.hashtags.map((hashtag, index) => <Text style={styles.hashtags} key={index}>#{hashtag}</Text>)}
             </View>
             <Button title={!render ? 'View More' : 'View Less'} onPress={clickHandler}/>
             {render && 
@@ -148,7 +148,8 @@ const styles = StyleSheet.create({
     },
     title:{
         marginRight: 10,
-        color: 'white'
+        fontSize: 15,
+        color: 'goldenrod'
     },
     activity:{
         width: '100%',
@@ -157,7 +158,8 @@ const styles = StyleSheet.create({
     authorContainer:{
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        backgroundColor: 'black'
     },
     input: {
         height: 40,
@@ -211,5 +213,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.75)',
         fontSize: 15
+    },
+    hashtags:{
+        color:'teal',
+        paddingTop: 2,
+        paddingBottom: 2,
     }
 })

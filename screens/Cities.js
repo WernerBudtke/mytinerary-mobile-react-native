@@ -27,7 +27,7 @@ const Cities = (props) =>{
     dataToShow = filteredCities.length > 0 ? filteredCities : allCities
     return (
         <View style={styles.container}>
-            {fetching && <Text>Loading...</Text>}
+            {fetching && <View style={styles.containerLoad}><Text style={styles.textLoad}>Loading...</Text></View>}
             {!fetching && 
                 <View>
                     <View style={styles.hero}>
@@ -82,6 +82,13 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between',
       backgroundColor: '#2a2351'
     },
+    containerLoad: {
+        flex:1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#2a2351'
+    },
     citiesContainer:{
         paddingBottom: 620
     },
@@ -113,6 +120,14 @@ const styles = StyleSheet.create({
     text:{
         color: 'white',
         fontSize: 18,
+        textAlign: 'center',
+        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 10
+    },
+    textLoad:{
+        color: 'white',
+        fontSize: 20,
         textAlign: 'center',
         textShadowColor: 'rgba(0, 0, 0, 0.75)',
         textShadowOffset: {width: -1, height: 1},

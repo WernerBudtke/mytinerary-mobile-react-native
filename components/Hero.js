@@ -6,7 +6,7 @@ const Hero = (props) => {
             <ImageBackground style={styles.image} source={{uri: "https://mytinerary-budtke.herokuapp.com/assets/fotohero.jpg"}} resizeMode="cover">
                 <Text style={styles.text}>Find your perfect trip, designed by insiders who know and love their cities!</Text>
                 <Button title="CLICK HERE" color="#131025" onPress={() => {
-                    props.navigation.navigate("Cities")
+                    props.navigation.navigate("Cities ")
                 }}/>
             </ImageBackground> 
         </View>
