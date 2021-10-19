@@ -4,9 +4,6 @@
   <a href="https://github.com/WernerBudtke/mytinerary-budtke/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
-  <a href="https://github.com/WernerBudtke/mytinerary-budtke/blob/master/LICENSE" target="_blank">
-    <img alt="License: ISC" src="https://img.shields.io/github/license/WernerBudtke/mytinerary-budtke" />
-  </a>
 </p>
 
 > WebApp for travellers around the world to describe their itineraries and help other people decide if a city is the perfect place to enjoy vacation or not.
